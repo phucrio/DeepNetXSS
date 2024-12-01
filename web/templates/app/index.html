@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Analysis Board</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="../../static/assets/img/icon.ico" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script src="../../static/assets/js/plugin/webfont/webfont.min.js"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../../static/assets/css/fonts.min.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+	<script>
+		// Load Pie Chart
+		async function loadPieChartData() {
+			const response = await fetch('/update_log_data');
+			const data = await response.json();
+			var pieChart = document.getElementById('pieChart').getContext('2d');
+			var myPieChart = new Chart(pieChart, {
+				type: 'pie',
+				data: {
+					datasets: [{
+						data: [data.Normal, data['Reflected XSS'], data['Stored XSS']],
+						backgroundColor :["#58FF58","#fdaf4b","#f3545d"],
+						borderWidth: 0
+					}],
+					labels: ['Normal', 'Reflected XSS', 'Stored XSS'] 
+				},
+				options : {
+					responsive: true, 
+					maintainAspectRatio: false,
+					legend: {
+						position : 'bottom',
+						labels : {
+							fontColor: 'black',
+							fontSize: 16,
+							usePointStyle : true,
+							padding: 20
+						}
+					},
+					pieceLabel: {
+						render: 'percentage',
+						fontColor: 'white',
+						fontSize: 15,
+					},
+					tooltips: false,
+					layout: {
+						padding: {
+							left: 0,
+							right: 0,
+							top: 0,
+							bottom: 0
+						}
+					}
+				}
+			});
+		}
+		loadPieChartData();
+
+		// Load DounghnutChart
+		async function loadChartData() {
+			const response = await fetch('/update_log_data');
+			const data = await response.json();
+
+			var doughnutChart = document.getElementById('doughnutChart').getContext('2d');
+			var myDoughnutChart = new Chart(doughnutChart, {
+				type: 'doughnut',
+				data: {
+					datasets: [{
+						data: [data.Normal, data['Reflected XSS'], data['Stored XSS']],
+						backgroundColor: ["#58FF58","#fdaf4b","#f3545d"],
+					}],
+					labels: [
+						'Normal',
+						'Reflected XSS',
+						'Stored XSS'
+					]
+				},
+				options: {
+					responsive: true, 
+					maintainAspectRatio: false,
+					legend : {
+						position: 'bottom',
+						labels : {
+							fontColor: 'black',
+							fontSize: 14,
+							usePointStyle : true,
+							padding: 20
+						}
+					},
+					layout: {
+						padding: {
+							left: 15,
+							right: 15,
+							top: 15,
+							bottom: 15
+						}
+					}
+				}
+			});
+		}
+		loadChartData();
+	</script>
+	<style>
+		.truncate {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 140px; /* Kích thước cắt ngắn */
+			cursor: pointer;
+		}
+		.extended {
+			white-space: normal;
+			overflow: visible;
+			text-overflow: unset;
+			max-width: none; /* Đảm bảo không giới hạn độ rộng */
+		}
+
+		.popup {
+			position: absolute;
+			padding: 10px;
+			background-color: white;
+			border: 1px solid #ccc;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			z-index: 1000;
+			max-width: 600px; /* Đặt độ rộng tối đa cho popup */
+			word-wrap: break-word; /* Đảm bảo text không bị tràn ra ngoài */
+		}
+
+		.popup-content {
+			white-space: pre-wrap;
+		}
+
+
+		.popup-close {
+			text-align: right;
+			cursor: pointer;
+			font-weight: bold;
+		}
+
+	</style>
+	<style>
+        /* Điều chỉnh kích thước canvas */
+        #pieChart {
+            max-width: 100%;
+            max-height: 500px; /* Tăng chiều cao của biểu đồ */
+            height: 400px; /* Đảm bảo biểu đồ có kích thước lớn hơn */
+            width: 400px;
+        }
+		#doughnutChart {
+            max-width: 100%;
+            max-height: 500px; /* Tăng chiều cao của biểu đồ */
+            height: 400px; /* Đảm bảo biểu đồ có kích thước lớn hơn */
+            width: 400px;
+        }
+		.custom-table th, .custom-table td {
+			padding: 5px !important; /* Sử dụng !important để ghi đè các thuộc tính mặc định */
+		}
+
+    </style>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="../../static/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../static/assets/css/atlantis.min.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+			<div class="logo-header" data-background-color="blue">
+				
+				<a href="{{ '/home' }}" class="logo">
+					<img src="../../static/assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
+			</div>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+				
+				<div class="container-fluid">
+					<div class="collapse" id="search-nav">
+						<form class="navbar-left navbar-form nav-search mr-md-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<button type="submit" class="btn btn-search pr-1">
+										<i class="fa fa-search search-icon"></i>
+									</button>
+								</div>
+								<label>
+									<input type="text" placeholder="Search ..." class="form-control">
+								</label>
+							</div>
+						</form>
+					</div>
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+						<li class="nav-item toggle-nav-search hidden-caret">
+							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
+								<i class="fa fa-search"></i>
+							</a>
+						</li>
+						<li class="nav-item dropdown hidden-caret">
+							<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+								<i class="fas fa-layer-group"></i>
+							</a>
+							<div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
+								<div class="quick-actions-header">
+									<span class="title mb-1">Quick Actions</span>
+									<span class="subtitle op-8">Shortcuts</span>
+								</div>
+								<div class="quick-actions-scroll scrollbar-outer">
+									<div class="quick-actions-items">
+										<div class="row m-0">
+											<a class="col-6 col-md-4 p-0" href="#">
+												<div class="quick-actions-item">
+													<i class="flaticon-file-1"></i>
+													<span class="text">Generated Report</span>
+												</div>
+											</a>
+											<a class="col-6 col-md-4 p-0" href="#">
+												<div class="quick-actions-item">
+													<i class="flaticon-database"></i>
+													<span class="text">Create New Database</span>
+												</div>
+											</a>
+											<a class="col-6 col-md-4 p-0" href="#">
+												<div class="quick-actions-item">
+													<i class="flaticon-pen"></i>
+													<span class="text">Create New Post</span>
+												</div>
+											</a>
+											<a class="col-6 col-md-4 p-0" href="#">
+												<div class="quick-actions-item">
+													<i class="flaticon-interface-1"></i>
+													<span class="text">Create New Task</span>
+												</div>
+											</a>
+											<a class="col-6 col-md-4 p-0" href="#">
+												<div class="quick-actions-item">
+													<i class="flaticon-list"></i>
+													<span class="text">Completed Tasks</span>
+												</div>
+											</a>
+											<a class="col-6 col-md-4 p-0" href="#">
+												<div class="quick-actions-item">
+													<i class="flaticon-file"></i>
+													<span class="text">Create New Invoice</span>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="nav-item dropdown hidden-caret">
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+								<div class="avatar-sm">
+									<img src="../../static/assets/img/admin.png" alt="..." class="avatar-img rounded-circle">
+								</div>
+							</a>
+							<ul class="dropdown-menu dropdown-user animated fadeIn">
+								<div class="dropdown-user-scroll scrollbar-outer">
+									<li>
+										<div class="user-box">
+											<div class="avatar-lg"><img src="../../static/assets/img/admin.png" alt="image profile" class="avatar-img rounded"></div>
+											<div class="u-text">
+												<h4>PhucRiO</h4>
+												<p class="text-muted">bphuc682@gmail.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="#">My Profile</a>
+										<a class="dropdown-item" href="#">My Balance</a>
+										<a class="dropdown-item" href="#">Inbox</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="#">Account Setting</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="#">Logout</a>
+									</li>
+								</div>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!-- End Navbar -->
+		</div>
+
+		<!-- Sidebar -->
+		<div class="sidebar sidebar-style-2">
+			<div class="sidebar-wrapper scrollbar scrollbar-inner">
+				<div class="sidebar-content">
+					<div class="user">
+						<div class="avatar-sm float-left mr-2">
+							<img src="../../static/assets/img/admin.png" alt="..." class="avatar-img rounded-circle">
+						</div>
+						<div class="info">
+							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									PhucRiO
+									<span class="user-level">Administrator</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample">
+								<ul class="nav">
+									<li>
+										<a href="#profile">
+											<span class="link-collapse">My Profile</span>
+										</a>
+									</li>
+									<li>
+										<a href="#edit">
+											<span class="link-collapse">Edit Profile</span>
+										</a>
+									</li>
+									<li>
+										<a href="#settings">
+											<span class="link-collapse">Settings</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<ul class="nav nav-primary">
+						<li class="nav-item active">
+							<a  href="{{ '/home' }}" class="collapsed" aria-expanded="false">
+								<i class="fas fa-home"></i>
+								<p>Analysis board</p>
+								<span class="caret"></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ '/dataset' }}">
+								<i class="fas fa-table"></i>
+								<p>Dataset</p>
+								<span class="caret"></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ '/learning_board' }}">
+								<i class="far fa-chart-bar"></i>
+								<p>Learning board</p>
+								<span class="caret"></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ '/model' }}">
+								<i class="fas fa-desktop"></i>
+								<p>Models</p>
+								<span class="caret"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- End Sidebar -->
+
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="card-title">Logs Statistics</div>
+                                    <!-- Bootstrap dropdown -->
+									<div class="btn-group">
+										<button id="model-selector" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Select Model
+										</button>
+										<div class="dropdown-menu">
+											<button class="dropdown-item" type="button" onclick="setModel('TextCNN')">TextCNN</button>
+											<button class="dropdown-item" type="button" onclick="setModel('BiLSTM')">BiLSTM</button>
+											<button class="dropdown-item" type="button" onclick="setModel('BiLSTM-GAP')">BiLSTM-GAP</button>
+											<button class="dropdown-item" type="button" onclick="setModel('CNN')">CNN</button>
+											<button class="dropdown-item" type="button" onclick="setModel('CNN-LSTM')">CNN-LSTM</button>
+										</div>
+									</div>
+                                </div>
+                            </div>
+							<div class="card-body">
+								<div id="alert-container"></div>
+							<div class="table-responsive" style="overflow-x: auto;">
+								<table id="basic-datatables" class="custom-table display table table-striped table-hover">
+									<thead class="thead-light">
+										<tr>
+											<th class="text-center">No</th>
+											<th class="text-center">Source</th>
+											<th class="text-center" >Destination</th>
+											<th class="text-center">URL</th>
+											<th class="text-center">Method</th>
+											<th class="text-center">User Input</th>
+											<th class="text-center">Status</th>
+											<th class="text-center">Note</th>
+											<th class="text-center">Time Date</th>
+										</tr>
+									</thead>
+									<tbody class="tbody-light">
+										{% for log in logs %}
+										<tr>
+											<td class="text-center">{{ loop.index }}</td>
+											<td class="text-center truncate" onclick="toggleContent(event)">{{ log['Source IP'] }}</td>
+											<td class="text-center truncate" onclick="toggleContent(event)">{{ log['Destination IP'] }}</td>
+											<td class="text-left truncate" data-type="trun-display" onclick="toggleContent(event)">{{ log['URL'] }}</td>
+											<td class="text-center" >{{ log['Method'] }}</td>
+											<td class="truncate" data-type="trun-display" onclick="toggleContent(event)">{{ log['User Input'] }}</td>
+											<td class="text-center" >{{ log['Status'] }}</td>
+											<td class="text-center truncate" onclick="toggleContent(event)">{{ log['Note'] }}</td>
+											<td class="text-center" >{{ log['TimeDate'] }}</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Logs Chart</div>
+								</div>
+								<div class="card-body">
+									<canvas id="pieChart"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Doughnut Chart</div>
+								</div>
+								<div class="card-body">
+									<canvas id="doughnutChart"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Multiple Line Chart Generalization Error By Epoch</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container">
+										<canvas id="multipleLineChartErr"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Multiple Line Chart Accurary By Epoch</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container">
+										<canvas id="multipleLineChartAcc"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									PhucRiO
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Help
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Licenses
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="copyright ml-auto">
+						2024
+					</div>				
+				</div>
+			</footer>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
+	<script src="../../static/assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="../../static/assets/js/core/popper.min.js"></script>
+	<script src="../../static/assets/js/core/bootstrap.min.js"></script>
+
+	<!-- jQuery UI -->
+	<script src="../../static/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="../../static/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+	<!-- jQuery Scrollbar -->
+	<script src="../../static/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+
+	<!-- Chart JS -->
+	<script src="../../static/assets/js/plugin/chart.js/chart.min.js"></script>
+
+	<!-- jQuery Sparkline -->
+	<script src="../../static/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+	<!-- Chart Circle -->
+	<script src="../../static/assets/js/plugin/chart-circle/circles.min.js"></script>
+
+	<!-- Datatables -->
+	<script src="../../static/assets/js/plugin/datatables/datatables.min.js"></script>
+
+	<!-- Bootstrap Notify -->
+	<script src="../../static/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+	<!-- jQuery Vector Maps -->
+	<script src="../../static/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+	<script src="../../static/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+
+	<!-- Sweet Alert -->
+	<script src="../../static/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+	<!-- Atlantis JS -->
+	<script src="../../static/assets/js/atlantis.min.js"></script>
+	<script src="../../static/assets/js/analysis-board.js"> </script>
+	<script>
+		// Load Pie Chart
+		async function loadPieChartData() {
+			const response = await fetch('/update_log_data');
+			const data = await response.json();
+			var pieChart = document.getElementById('pieChart').getContext('2d');
+			var myPieChart = new Chart(pieChart, {
+				type: 'pie',
+				data: {
+					datasets: [{
+						data: [data.Normal, data['Reflected XSS'], data['Stored XSS']],
+						backgroundColor :["#58FF58","#fdaf4b","#f3545d"],
+						borderWidth: 0
+					}],
+					labels: ['Normal', 'Reflected XSS', 'Stored XSS'] 
+				},
+				options : {
+					responsive: true, 
+					maintainAspectRatio: false,
+					legend: {
+						position : 'bottom',
+						labels : {
+							fontColor: 'black',
+							fontSize: 16,
+							usePointStyle : true,
+							padding: 20
+						}
+					},
+					pieceLabel: {
+						render: 'percentage',
+						fontColor: 'white',
+						fontSize: 15,
+					},
+					tooltips: false,
+					layout: {
+						padding: {
+							left: 0,
+							right: 0,
+							top: 0,
+							bottom: 0
+						}
+					}
+				}
+			});
+		}
+		loadPieChartData();
+
+		// Load DounghnutChart
+		async function loadChartData() {
+			const response = await fetch('/update_log_data');
+			const data = await response.json();
+
+			var doughnutChart = document.getElementById('doughnutChart').getContext('2d');
+			var myDoughnutChart = new Chart(doughnutChart, {
+				type: 'doughnut',
+				data: {
+					datasets: [{
+						data: [data.Normal, data['Reflected XSS'], data['Stored XSS']],
+						backgroundColor: ["#58FF58","#fdaf4b","#f3545d"],
+					}],
+					labels: [
+						'Normal',
+						'Reflected XSS',
+						'Stored XSS'
+					]
+				},
+				options: {
+					responsive: true, 
+					maintainAspectRatio: false,
+					legend : {
+						position: 'bottom',
+						labels : {
+							fontColor: 'black',
+							fontSize: 14,
+							usePointStyle : true,
+							padding: 20
+						}
+					},
+					layout: {
+						padding: {
+							left: 15,
+							right: 15,
+							top: 15,
+							bottom: 15
+						}
+					}
+				}
+			});
+		}
+		loadChartData();
+
+		// Load multiLine Error Chart
+		var multipleLineChartErr = document.getElementById('multipleLineChartErr').getContext('2d');
+		var myMultipleLineChartErr = new Chart(multipleLineChartErr, {
+			type: 'line',
+			data: {
+				labels: ["1", "3", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50"],
+				datasets: [{
+					label: "BiLSTM",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.3735, 0.1476, 0.1496, 0.1505, 0.1697, 0.092, 0.0966, 0.1041, 0.1835, 0.1755, 0.0981, 0.1399]
+				},{
+					label: "BiLSTM-GAP",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.4775, 0.4763, 0.3567, 0.3048, 0.2834, 0.2712, 0.2607, 0.175, 0.1719, 0.13, 0.1218, 0.1224]
+				}, {
+					label: "CNN",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.4159, 0.124, 0.0842, 0.0751, 0.0714, 0.0719, 0.0845, 0.075, 0.1059, 0.1061, 0.1172, 0.123]
+				}, {
+					label: "CNN-LSTM",
+					borderColor: "#D17700",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#D17700",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.4197, 0.1245, 0.0666, 0.0606, 0.0697, 0.0599, 0.0685, 0.0776, 0.0898, 0.0879, 0.0975, 0.1067]
+				}, {
+					label: "TextCNN",
+					borderColor: "#D100A8",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#D100A8",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.053, 0.0122, 0.0071, 0.007, 0.006, 0.0066, 0.0087, 0.0093, 0.0104, 0.0106, 0.0123, 0.0049]
+				}]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				}
+			}
+		});
+		
+		// Load multiLine Accuracy Chart 
+		var multipleLineChartAcc = document.getElementById('multipleLineChartAcc').getContext('2d');
+		var myMultipleLineChartAcc = new Chart(multipleLineChartAcc, {
+			type: 'line',
+			data: {
+				labels: ["1", "3", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50"],
+				datasets: [{
+					label: "BiLSTM",
+					borderColor: "#1d7af3",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#1d7af3",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.7984, 0.9545, 0.9518, 0.9527, 0.9469, 0.9657, 0.9643, 0.9665, 0.9545, 0.9523, 0.9692, 0.9612]
+				},{
+					label: "BiLSTM-GAP",
+					borderColor: "#59d05d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#59d05d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.7664, 0.7651, 0.8758, 0.8985, 0.9037, 0.9094, 0.9111, 0.9351, 0.9425, 0.959, 0.9664, 0.963]
+				}, {
+					label: "CNN",
+					borderColor: "#f3545d",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#f3545d",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.7782, 0.9564, 0.9691, 0.9808, 0.9817, 0.9843, 0.9813, 0.9808, 0.9826, 0.983, 0.9839, 0.983]
+				}, {
+					label: "CNN-LSTM",
+					borderColor: "#D17700",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#D17700",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.7765, 0.9612, 0.9773, 0.9821, 0.9861, 0.9869, 0.9882, 0.9882, 0.9878, 0.9869, 0.9874, 0.9882]
+				}, {
+					label: "TextCNN",
+					borderColor: "#D100A8",
+					pointBorderColor: "#FFF",
+					pointBackgroundColor: "#D100A8",
+					pointBorderWidth: 2,
+					pointHoverRadius: 4,
+					pointHoverBorderWidth: 1,
+					pointRadius: 4,
+					backgroundColor: 'transparent',
+					fill: true,
+					borderWidth: 2,
+					data: [0.979, 0.9964, 0.9973, 0.9969, 0.9978, 0.9969, 0.9973, 0.9973, 0.9969, 0.9969, 0.996, 0.9982]
+				}]
+			},
+			options : {
+				responsive: true, 
+				maintainAspectRatio: false,
+				legend: {
+					position: 'top',
+				},
+				tooltips: {
+					bodySpacing: 4,
+					mode:"nearest",
+					intersect: 0,
+					position:"nearest",
+					xPadding:10,
+					yPadding:10,
+					caretPadding:10
+				},
+				layout:{
+					padding:{left:15,right:15,top:15,bottom:15}
+				}
+			}
+		});
+	</script>
+	
+</body>
+</html>

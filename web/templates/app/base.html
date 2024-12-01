@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>{% block title %}DeepNet for XSS detect{% endblock %}</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="../../static/assets/img/icon.ico" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script src="../../static/assets/js/plugin/webfont/webfont.min.js"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../../static/assets/css/fonts.min.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="../../static/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../static/assets/css/atlantis.min.css">
+	<link rel="stylesheet" href="../../static/assets/css/demo.css">
+	
+	<!-- JS Files (Block for additional scripts) -->
+	{% block extra_js %}
+	{% endblock %}
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+			<div class="logo-header" data-background-color="blue">
+				<a href="{{ '/home' }}" class="logo">
+					<img src="../../static/assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
+			</div>
+			<!-- End Logo Header -->
+
+			<!-- Navbar Header -->
+			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+				<div class="container-fluid">
+					{% block navbar %}
+					<!-- Place your navbar code here -->
+					{% endblock %}
+				</div>
+			</nav>
+			<!-- End Navbar -->
+		</div>
+
+		<div class="sidebar">
+			{% block sidebar %}
+			<!-- Place your sidebar code here -->
+			{% endblock %}
+		</div>
+
+		<div class="main-panel">
+			{% block content %}
+			<!-- Place the main content of the page here -->
+			{% endblock %}
+		</div>
+	</div>
+
+	<!-- JS Files -->
+	<script src="../../static/assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="../../static/assets/js/plugin/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../../static/assets/js/atlantis.min.js"></script>
+
+	<!-- Additional JS Files (Block for scripts loaded at the end) -->
+	{% block footer_js %}
+	{% endblock %}
+</body>
+</html>
