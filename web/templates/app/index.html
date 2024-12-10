@@ -144,6 +144,18 @@
 			cursor: pointer;
 			font-weight: bold;
 		}
+		/* Ghi đè style cho bảng */
+		.table-responsive table.custom-table {
+			font-size: 18px !important;
+			color: #000 !important;
+		}
+
+		.table-responsive table.custom-table th,
+		.table-responsive table.custom-table td {
+			font-size: 14px !important; 
+			color: #000 !important;
+			text-align: center !important;
+		}
 
 	</style>
 	<style>
@@ -423,7 +435,7 @@
 									</thead>
 									<tbody class="tbody-light">
 										{% for log in logs %}
-										<tr>
+										<tr class="ta">
 											<td class="text-center">{{ loop.index }}</td>
 											<td class="text-center truncate" onclick="toggleContent(event)">{{ log['Source IP'] }}</td>
 											<td class="text-center truncate" onclick="toggleContent(event)">{{ log['Destination IP'] }}</td>

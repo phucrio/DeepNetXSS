@@ -6,7 +6,7 @@ import pickle
 import tensorflow as tf
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
-
+import re
 # Giảm thiểu thông tin log của TensorFlow
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -40,7 +40,7 @@ def tfidf_process_input(sentence):
     - sentence: Chuỗi đầu vào cần xử lý.
     
     Returns:
-    - Reshaped array (28, 28, 1) sẵn sàng đưa vào mô hình.
+    - Reshaped array (28, 28, 1) đưa vào mô hình.
     """
     # Load pre-trained TF-IDF vectorizer và SVD model
     with open('web/models/tfidf_vectorizer.pkl', 'rb') as f:
@@ -124,6 +124,14 @@ def data2char_index(X, max_len):
     
     return X_char 
 
+def validate_payload(payload):
+    if len(payload) < 20:
+        return False
+    if re.fullmatch(r'^[a-fA-F0-9]{32}$', payload):
+        return False
+    
+    return True
+
 def predict_xss(model, payload, model_name='CNN-LSTM'):
     """
     Dự đoán liệu payload có phải là XSS hay không.
@@ -136,6 +144,8 @@ def predict_xss(model, payload, model_name='CNN-LSTM'):
     Returns:
     - Dự đoán (1 cho XSS, 0 cho non-XSS).
     """
+    if not validate_payload(payload):
+        return 0
     # Độ dài tối đa của mỗi đoạn payload
     max_chunk_length = 1000
 

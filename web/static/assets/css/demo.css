@@ -303,3 +303,8 @@ body[data-background-color="dark"] .demo-icon .icon-class {
 		right: -85%;
 	}
 }
+
+.ta{
+	color: #000 !important;
+	font-size: 14px !important;
+}

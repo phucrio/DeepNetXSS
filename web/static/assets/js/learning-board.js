@@ -32,23 +32,41 @@ data: {
         data: [0.5804, 0.0545, 0.0368, 0.014, 0.0155, 0.0127, 0.0205, 0.0074, 0.0065, 0.0059]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -86,28 +104,46 @@ data: {
         data: [0.8522, 0.9082, 0.8512, 0.8475, 0.8276, 0.8660, 0.8206, 0.8545, 0.8655, 0.8807, 0.8656, 0.8857, 0.8733, 0.8779, 0.8896, 0.8730, 0.9264, 0.9150, 0.8990, 0.9112, 0.9034, 0.8910, 0.9217, 0.8992, 0.8605, 0.8927, 0.9163, 0.9247]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
 
-   var multipleLineChart = document.getElementById('cnv_cnn_lstm_acc').getContext('2d');
+var multipleLineChart = document.getElementById('cnv_cnn_lstm_acc').getContext('2d');
 var myMultipleLineChart = new Chart(multipleLineChart, {
 type: 'line',
 data: {
@@ -140,23 +176,41 @@ data: {
         data: [0.8032, 0.9845, 0.9888, 0.9983, 0.9964, 0.9977, 0.9946, 0.9991, 0.9988, 0.9986]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -194,23 +248,41 @@ data: {
         data: [0.58, 0.42, 0.39, 0.51, 0.65]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -248,23 +320,41 @@ data: {
         data: [1.01, 0.63, 0.38, 0.35, 1.13]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -341,23 +431,41 @@ data: {
         data: [0.014, 0.0044, 0.0024, 0.0014, 0.0011, 0.00085427, 0.00067738, 0.00054912, 0.00070564, 0.00062422]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -396,23 +504,41 @@ data: {
         data: [0.9958, 0.9991, 0.9994, 0.9998, 0.9998, 0.9998, 0.9998, 0.9998, 0.9998, 0.9998]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -451,23 +577,41 @@ data: {
         data: [1.01, 0.63, 0.38, 0.35, 1.13]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -492,7 +636,6 @@ function show_chart_textcnn(e) {
     }
 
 //cnn
-
 var multipleLineChart = document.getElementById('cnv_cnn_epoc').getContext('2d');
 var myMultipleLineChart = new Chart(multipleLineChart, {
 type: 'line',
@@ -526,23 +669,41 @@ data: {
         data: [0.42, 0.126, 0.0954, 0.0732, 0.068, 0.0484, 0.0604, 0.0367, 0.0521, 0.0356]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -580,23 +741,41 @@ data: {
         data: [0.8522, 0.9082, 0.8512, 0.8475, 0.8276, 0.8660, 0.8206, 0.8545, 0.8655, 0.8807, 0.8656, 0.8857, 0.8733, 0.8779, 0.8896, 0.8730, 0.9264, 0.9150, 0.8990, 0.9112, 0.9034, 0.8910, 0.9217, 0.8992, 0.8605, 0.8927, 0.9163, 0.9247]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -634,23 +813,41 @@ data: {
         data: [0.8142, 0.9621, 0.9696, 0.9787, 0.9796, 0.9858, 0.9846, 0.9908, 0.9912, 0.9921]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -688,28 +885,46 @@ data: {
         data: [0.58, 0.42, 0.39, 0.51, 0.65]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
 
- var multipleLineChart = document.getElementById('cnv_cnn_img').getContext('2d');
+var multipleLineChart = document.getElementById('cnv_cnn_img').getContext('2d');
 var myMultipleLineChart = new Chart(multipleLineChart, {
 type: 'line',
 data: {
@@ -742,23 +957,41 @@ data: {
         data: [1.01, 0.63, 0.38, 0.35, 1.13]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -808,7 +1041,7 @@ type: 'line',
 data: {
     labels: [1, 2, 3, 4, 5, 10, 15, 20, 25, 30],
     datasets: [{
-        label: "Learning Error MSE",
+        label: "Learning Error",
         borderColor: "#1d7af3",
         pointBorderColor: "#FFF",
         pointBackgroundColor: "#1d7af3",
@@ -821,7 +1054,7 @@ data: {
         borderWidth: 2,
         data: [0.5562, 0.2929, 0.2076, 0.1779, 0.1576, 0.1339, 0.1028, 0.0826, 0.0759, 0.0567]
     },{
-        label: "Generalization Error MSE",
+        label: "Generalization Error",
         borderColor: "#59d05d",
         pointBorderColor: "#FFF",
         pointBackgroundColor: "#59d05d",
@@ -835,23 +1068,41 @@ data: {
         data: [0.3418, 0.3033, 0.1882, 0.2144, 0.179, 0.1458, 0.1408, 0.1507, 0.1241, 0.1163]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -862,7 +1113,7 @@ type: 'line',
 data: {
     labels: [1, 2, 3, 4, 5, 10, 15, 20, 25, 30],
     datasets: [{
-        label: "Learning Bin Accuracy",
+        label: "Learning Accuracy",
         borderColor: "#1d7af3",
         pointBorderColor: "#FFF",
         pointBackgroundColor: "#1d7af3",
@@ -875,7 +1126,7 @@ data: {
         borderWidth: 2,
         data: [0.7023, 0.8884, 0.924, 0.9371, 0.9463, 0.9532, 0.9664, 0.9724, 0.9743, 0.9818]
         },{
-        label: "Generalization Bin Accuracy",
+        label: "Generalization Accuracy",
         borderColor: "#59d05d",
         pointBorderColor: "#FFF",
         pointBackgroundColor: "#59d05d",
@@ -889,23 +1140,41 @@ data: {
         data: [0.8583, 0.8712, 0.9367, 0.9212, 0.94, 0.9492, 0.9533, 0.9588, 0.9596, 0.9696]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
@@ -943,134 +1212,190 @@ data: {
         data: [2.56, 2.40, 2.12, 2.30, 1.95, 1.2, 0.57, 0.23, 0.46, 1.2, 3.4]
     }]
 },
-options : {
+options: {
     responsive: true,
     maintainAspectRatio: true,
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        }]
+    },
     legend: {
         position: 'top',
+        labels: {
+            fontColor: '#000', // Màu chữ đen
+            fontSize: 13
+        }
     },
     tooltips: {
         bodySpacing: 4,
-        mode:"nearest",
+        mode: "nearest",
         intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
+        position: "nearest",
+        xPadding: 10,
+        yPadding: 10,
+        caretPadding: 10
     },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    layout: {
+        padding: { left: 15, right: 15, top: 15, bottom: 15 }
     }
 }
 });
 
 var multipleLineChart = document.getElementById('cnv_bilstm_lay').getContext('2d');
 var myMultipleLineChart = new Chart(multipleLineChart, {
-type: 'line',
-data: {
-    labels: [1, 2, 3, 4, 5],
-    datasets: [{
-        label: "Learning Error",
-        borderColor: "#1d7af3",
-        pointBorderColor: "#FFF",
-        pointBackgroundColor: "#1d7af3",
-        pointBorderWidth: 2,
-        pointHoverRadius: 4,
-        pointHoverBorderWidth: 1,
-        pointRadius: 0,
-        backgroundColor: 'transparent',
-        fill: true,
-        borderWidth: 2,
-        data: [0.45, 0.26, 0.11, 0.40, 0.8]
-    },{
-        label: "Generalization Error",
-        borderColor: "#59d05d",
-        pointBorderColor: "#FFF",
-        pointBackgroundColor: "#59d05d",
-        pointBorderWidth: 0,
-        pointHoverRadius: 0,
-        pointHoverBorderWidth: 1,
-        pointRadius: 0,
-        backgroundColor: 'transparent',
-        fill: true,
-        borderWidth: 2,
-        data: [0.6, 0.31, 0.14, 0.64, 1.3]
-    }]
-},
-options : {
-    responsive: true,
-    maintainAspectRatio: true,
-    legend: {
-        position: 'top',
+    type: 'line',
+    data: {
+        labels: [1, 2, 3, 4, 5],
+        datasets: [{
+            label: "Learning Error",
+            borderColor: "#1d7af3",
+            pointBorderColor: "#FFF",
+            pointBackgroundColor: "#1d7af3",
+            pointBorderWidth: 2,
+            pointHoverRadius: 4,
+            pointHoverBorderWidth: 1,
+            pointRadius: 0,
+            backgroundColor: 'transparent',
+            fill: true,
+            borderWidth: 2,
+            data: [0.45, 0.26, 0.11, 0.40, 0.8]
+        }, {
+            label: "Generalization Error",
+            borderColor: "#59d05d",
+            pointBorderColor: "#FFF",
+            pointBackgroundColor: "#59d05d",
+            pointBorderWidth: 0,
+            pointHoverRadius: 0,
+            pointHoverBorderWidth: 1,
+            pointRadius: 0,
+            backgroundColor: 'transparent',
+            fill: true,
+            borderWidth: 2,
+            data: [0.6, 0.31, 0.14, 0.64, 1.3]
+        }]
     },
-    tooltips: {
-        bodySpacing: 4,
-        mode:"nearest",
-        intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
-    },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: '#000', // Màu chữ đen
+                    fontSize: 13
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: '#000', // Màu chữ đen
+                    fontSize: 13
+                }
+            }]
+        },
+        legend: {
+            position: 'top',
+            labels: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        },
+        tooltips: {
+            bodySpacing: 4,
+            mode: "nearest",
+            intersect: 0,
+            position: "nearest",
+            xPadding: 10,
+            yPadding: 10,
+            caretPadding: 10
+        },
+        layout: {
+            padding: { left: 15, right: 15, top: 15, bottom: 15 }
+        }
     }
-}
 });
+
 
 var multipleLineChart = document.getElementById('cnv_bilstm_seq').getContext('2d');
 var myMultipleLineChart = new Chart(multipleLineChart, {
-type: 'line',
-data: {
-    labels: [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024],
-    datasets: [{
-        label: "Learning Error",
-        borderColor: "#1d7af3",
-        pointBorderColor: "#FFF",
-        pointBackgroundColor: "#1d7af3",
-        pointBorderWidth: 2,
-        pointHoverRadius: 4,
-        pointHoverBorderWidth: 1,
-        pointRadius: 0,
-        backgroundColor: 'transparent',
-        fill: true,
-        borderWidth: 2,
-        data: [0.01, 0.05, 0.5, 0.8, 0.10, 0.11, 0.13, 0.29, 0.94, 2.4]
-    },{
-        label: "Generalization Error",
-        borderColor: "#59d05d",
-        pointBorderColor: "#FFF",
-        pointBackgroundColor: "#59d05d",
-        pointBorderWidth: 0,
-        pointHoverRadius: 0,
-        pointHoverBorderWidth: 1,
-        pointRadius: 0,
-        backgroundColor: 'transparent',
-        fill: true,
-        borderWidth: 2,
-        data: [0.78, 0.65, 0.49, 0.52, 0.32, 0.19, 0.16, 0.41, 1.13, 2.9]
-    }]
-},
-options : {
-    responsive: true,
-    maintainAspectRatio: true,
-    legend: {
-        position: 'top',
+    type: 'line',
+    data: {
+        labels: [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024],
+        datasets: [{
+            label: "Learning Error",
+            borderColor: "#1d7af3",
+            pointBorderColor: "#FFF",
+            pointBackgroundColor: "#1d7af3",
+            pointBorderWidth: 2,
+            pointHoverRadius: 4,
+            pointHoverBorderWidth: 1,
+            pointRadius: 0,
+            backgroundColor: 'transparent',
+            fill: true,
+            borderWidth: 2,
+            data: [0.01, 0.05, 0.5, 0.8, 0.10, 0.11, 0.13, 0.29, 0.94, 2.4]
+        }, {
+            label: "Generalization Error",
+            borderColor: "#59d05d",
+            pointBorderColor: "#FFF",
+            pointBackgroundColor: "#59d05d",
+            pointBorderWidth: 0,
+            pointHoverRadius: 0,
+            pointHoverBorderWidth: 1,
+            pointRadius: 0,
+            backgroundColor: 'transparent',
+            fill: true,
+            borderWidth: 2,
+            data: [0.78, 0.65, 0.49, 0.52, 0.32, 0.19, 0.16, 0.41, 1.13, 2.9]
+        }]
     },
-    tooltips: {
-        bodySpacing: 4,
-        mode:"nearest",
-        intersect: 0,
-        position:"nearest",
-        xPadding:10,
-        yPadding:10,
-        caretPadding:10
-    },
-    layout:{
-        padding:{left:15,right:15,top:15,bottom:15}
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: '#000',
+                    fontSize: 13 
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: '#000', // Màu chữ đen
+                    fontSize: 13 // Kích thước chữ 14px
+                }
+            }]
+        },
+        legend: {
+            position: 'top',
+            labels: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 13
+            }
+        },
+        tooltips: {
+            bodySpacing: 4,
+            mode: "nearest",
+            intersect: 0,
+            position: "nearest",
+            xPadding: 10,
+            yPadding: 10,
+            caretPadding: 10
+        },
+        layout: {
+            padding: { left: 15, right: 15, top: 15, bottom: 15 }
+        }
     }
-}
 });
+
 
 
 function show_chart_bilstm(e) {
@@ -1162,39 +1487,30 @@ const config = {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-            y: {
-                beginAtZero: true,
-                max: 1, // Giá trị tối đa của trục y là 1
+            yAxes: [{
                 ticks: {
-                    font: {
-                        size: 16, // Kích thước chữ cho trục y
-                        weight: 'bold' // Đậm chữ cho trục y
-                    }
+                    beginAtZero: false,
+                    max: 1, // Giá trị tối đa của trục y là 1
+                    fontColor: '#000', // Màu chữ đen
+                    fontSize: 15, // Kích thước chữ cho trục y
                 }
-            },
-            x: {
+            }],
+            xAxes: [{
                 ticks: {
-                    font: {
-                        size: 16, // Kích thước chữ cho trục x
-                        weight: 'bold' // Đậm chữ cho trục x
-                    }
+                    fontColor: '#000', // Màu chữ đen
+                    fontSize: 15, // Kích thước chữ cho trục x
                 }
+            }]
+        },
+        legend: {
+            display: true,
+            labels: {
+                fontColor: '#000', // Màu chữ đen
+                fontSize: 15, // Kích thước chữ cho legend
             }
         },
-        plugins: {
-            legend: {
-                position: 'top',
-                labels: {
-                    font: {
-                        size: 16, // Kích thước chữ cho legend
-                        weight: 'bold' // Đậm chữ cho legend
-                    },
-                    padding: 20
-                }
-            },
-            tooltip: {
-                enabled: true
-            }
+        tooltips: {
+            enabled: true
         }
     }
 };

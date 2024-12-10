@@ -76,11 +76,10 @@ def login():
     Xử lý đăng nhập.
     """
     if request.method == 'POST':
-        # Xử lý đăng nhập
         pass
     return render_template('login.html')
 
-# Đường dẫn đến các mô hình
+
 model_paths = {
     "TextCNN": "TextCNN.keras",
     "CNN-LSTM": "CNN-LSTM.keras",
