@@ -1,17 +1,8 @@
-from flask import Flask, render_template, request, make_response, jsonify, redirect, url_for, flash, session
-import json
-import os
-import numpy as np
-import csv
-import gc
-import timeit
-import hashlib
-import requests
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, session
 import pandas as pd
 import tensorflow as tf
 from .model import load_model, predict_xss
 from .logger import log_manager, db
-from pymongo import MongoClient
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
