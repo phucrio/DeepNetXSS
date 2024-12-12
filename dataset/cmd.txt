@@ -1,9 +1,0 @@
-sort -u xssed.csv -o xssed.csv
-sort -u normal.csv -o normal.csv
-
-sort -u normal_dec.csv -o normal_dec.csv
-sort -u xssed_dec.csv -o xssed_dec.csv
-
-# xoa dong trong
-awk NF xssed.csv > xssed.csv
-awk NF xssed_dec.csv > xssed_dec.csv 
